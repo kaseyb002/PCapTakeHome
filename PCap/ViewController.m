@@ -12,6 +12,7 @@
 #import "ArticleCollectionViewCell.h"
 #import "UIImageView+DownloadImage.h"
 #import "ArticleWebViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController ()
 /*!@brief The most recent article is displayed prominently.*/
@@ -45,8 +46,10 @@
 
 /*!@brief Fetches articles and loads collection view.*/
 - (void)fetchArticles {
+    [MBProgressHUD showHUDAddedTo:self.view animated:true];
     ArticleAPI *api = [[ArticleAPI alloc] init];
     [api getFeed:^(NSArray *articles, NSString *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:true];
         if (articles) {
             [self displayArticles:articles];
         } else if (error) {

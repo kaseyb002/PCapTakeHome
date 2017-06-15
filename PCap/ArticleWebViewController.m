@@ -8,6 +8,7 @@
 
 #import "ArticleWebViewController.h"
 #import <WebKit/WebKit.h>
+#import "MBProgressHUD.h"
 
 @interface ArticleWebViewController ()
 
@@ -25,8 +26,13 @@
                             self.article.link,
                             @"?displayMobileNavigation=0"];
     NSURL *url=[NSURL URLWithString:mobileLink];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+}
+
+- (void) webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [MBProgressHUD hideHUDForView:self.view animated:true];
 }
 
 #pragma mark - Setup View

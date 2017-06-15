@@ -10,7 +10,6 @@
 		03921C9A1EF1E80D00DF1757 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921C991EF1E80D00DF1757 /* main.m */; };
 		03921C9D1EF1E80D00DF1757 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921C9C1EF1E80D00DF1757 /* AppDelegate.m */; };
 		03921CA01EF1E80D00DF1757 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921C9F1EF1E80D00DF1757 /* ViewController.m */; };
-		03921CA51EF1E80D00DF1757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03921CA41EF1E80D00DF1757 /* Assets.xcassets */; };
 		03921CA81EF1E80D00DF1757 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03921CA61EF1E80D00DF1757 /* LaunchScreen.storyboard */; };
 		03921CB31EF1ED0900DF1757 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921CB21EF1ED0900DF1757 /* Article.m */; };
 		03921CB71EF1EF5000DF1757 /* ArticleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921CB61EF1EF5000DF1757 /* ArticleAPI.m */; };
@@ -19,6 +18,7 @@
 		03921CC71EF3122B00DF1757 /* NSString+StringCleanUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921CC61EF3122B00DF1757 /* NSString+StringCleanUp.m */; };
 		03921CCB1EF31E5A00DF1757 /* UIImageView+DownloadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921CCA1EF31E5A00DF1757 /* UIImageView+DownloadImage.m */; };
 		03921CCE1EF326C400DF1757 /* ArticleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03921CCD1EF326C400DF1757 /* ArticleWebViewController.m */; };
+		03C805741EF3452900DD5F54 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C805731EF3452900DD5F54 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,6 @@
 		03921C9C1EF1E80D00DF1757 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		03921C9E1EF1E80D00DF1757 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		03921C9F1EF1E80D00DF1757 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		03921CA41EF1E80D00DF1757 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03921CA71EF1E80D00DF1757 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03921CA91EF1E80D00DF1757 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03921CB21EF1ED0900DF1757 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
@@ -44,6 +43,9 @@
 		03921CCA1EF31E5A00DF1757 /* UIImageView+DownloadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DownloadImage.m"; sourceTree = "<group>"; };
 		03921CCC1EF326C400DF1757 /* ArticleWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleWebViewController.h; sourceTree = "<group>"; };
 		03921CCD1EF326C400DF1757 /* ArticleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleWebViewController.m; sourceTree = "<group>"; };
+		03C805711EF3452900DD5F54 /* MBProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		03C805721EF3452900DD5F54 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		03C805731EF3452900DD5F54 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +85,7 @@
 				03921CD11EF3327B00DF1757 /* Model */,
 				03921CD01EF3327100DF1757 /* Network API */,
 				03921CC81EF3123100DF1757 /* Extensions */,
-				03921CA41EF1E80D00DF1757 /* Assets.xcassets */,
+				03C805751EF348B100DD5F54 /* ProgressHUD */,
 				03921CA61EF1E80D00DF1757 /* LaunchScreen.storyboard */,
 				03921CA91EF1E80D00DF1757 /* Info.plist */,
 				03921CBB1EF2F77A00DF1757 /* pcap.png */,
@@ -149,6 +151,16 @@
 			name = "Cell Views";
 			sourceTree = "<group>";
 		};
+		03C805751EF348B100DD5F54 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				03C805711EF3452900DD5F54 /* MBProgressHUD-Prefix.pch */,
+				03C805721EF3452900DD5F54 /* MBProgressHUD.h */,
+				03C805731EF3452900DD5F54 /* MBProgressHUD.m */,
+			);
+			name = ProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,7 +221,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				03921CA81EF1E80D00DF1757 /* LaunchScreen.storyboard in Resources */,
-				03921CA51EF1E80D00DF1757 /* Assets.xcassets in Resources */,
 				03921CBC1EF2F77A00DF1757 /* pcap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +239,7 @@
 				03921CA01EF1E80D00DF1757 /* ViewController.m in Sources */,
 				03921C9D1EF1E80D00DF1757 /* AppDelegate.m in Sources */,
 				03921C9A1EF1E80D00DF1757 /* main.m in Sources */,
+				03C805741EF3452900DD5F54 /* MBProgressHUD.m in Sources */,
 				03921CB71EF1EF5000DF1757 /* ArticleAPI.m in Sources */,
 				03921CBA1EF2EE0C00DF1757 /* ArticleCollectionViewCell.m in Sources */,
 			);
@@ -382,6 +394,7 @@
 				03921CAE1EF1E80D00DF1757 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
