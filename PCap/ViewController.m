@@ -14,7 +14,7 @@
 #import "ArticleWebViewController.h"
 
 @interface ViewController ()
-
+/*!@brief The most recent article is displayed prominently.*/
 @property (nonatomic, strong) Article *firstArticle;
 @property (nonatomic, strong) NSArray<Article *> *articles;
 
@@ -43,28 +43,60 @@
 
 #pragma mark - Fetching and Displaying Articles
 
+/*!@brief Fetches articles and loads collection view.*/
 - (void)fetchArticles {
     ArticleAPI *api = [[ArticleAPI alloc] init];
-    [api getFeed:^(NSArray *articles, NSError *error) {
-        [self displayArticles:articles];
+    [api getFeed:^(NSArray *articles, NSString *error) {
+        if (articles) {
+            [self displayArticles:articles];
+        } else if (error) {
+            NSLog(@"%@", error);
+            [self downloadFailedAlert];
+        }
     }];
 }
 
+/*!@brief Loads collection view with articles.*/
 - (void)displayArticles:(NSArray<Article *>*) articlesToLoad {
     NSMutableArray *mArticles = [articlesToLoad mutableCopy];
     //grab first article to show in header view
     Article *article = mArticles.firstObject;
     self.firstArticle = article;
-    [mArticles removeObjectAtIndex:0];
+    [mArticles removeObjectAtIndex:0];//take it out from the rest
     //send the rest of the articles to collection view cells
     self.articles = [mArticles copy];
     [collectionView reloadData];
 }
-
+/*!@brief View article in WebView.*/
 - (void)viewArticle:(Article *) article {
     ArticleWebViewController *vc = [[ArticleWebViewController alloc] init];
     vc.article = article;
     [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)viewFirstArticle {
+    [self viewArticle: self.firstArticle];
+}
+
+- (void)downloadFailedAlert {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Can't Get Articles."
+                                                                   message:@"Please check your internet connection."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              [self fetchArticles];
+                                                          }];
+    
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                            style:UIAlertActionStyleDefault
+                   
+                                                          handler:nil];
+    [alert addAction:tryAgainAction];
+    [alert addAction:defaultAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - UICollection View Datasource
@@ -92,8 +124,16 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //change for iPad
-    return CGSizeMake(150, 150);
+    
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGFloat heightAndWidth = screenSize.width / 2 - 15;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
+        heightAndWidth = screenSize.width / 3 - 15;
+    }
+    CGSize size = CGSizeMake(heightAndWidth, heightAndWidth);
+
+    return size;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
@@ -109,53 +149,88 @@
             CGRect headerFrame = CGRectMake(0,
                                             0,
                                             self->collectionView.frame.size.width,
-                                            350);
+                                            400);
             headerView = [[UICollectionReusableView alloc] initWithFrame:headerFrame];
+            headerView.layer.borderWidth = 1.0;
+            headerView.layer.borderColor = [[UIColor colorWithWhite:0.9 alpha:1.0] CGColor];
+            headerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                           | UIViewAutoresizingFlexibleHeight);
         }
         
-        //add description label
         CGFloat const verticalMargin = 5.0f;
+        //add previous label
+        CGRect previousFrame = CGRectMake(10,
+                                          headerView.frame.size.height
+                                            - 25,
+                                          headerView.frame.size.width - 10,
+                                          25
+                                            - verticalMargin);
+        UILabel *previousLabel = [[UILabel alloc] initWithFrame: previousFrame];
+        previousLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:16.0];
+        previousLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+        previousLabel.text = @"Previous";
+        previousLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+        [headerView addSubview: previousLabel];
+        
+        //add description label
         CGRect descriptionFrame = CGRectMake(10,
-                                       headerView.frame.size.height - 35,
+                                       headerView.frame.size.height
+                                             - previousLabel.frame.size.height
+                                             - 40,
                                        headerView.frame.size.width - 10,
-                                       32);
+                                       37 - verticalMargin);
         UILabel *descriptionLabel = [[UILabel alloc] initWithFrame: descriptionFrame];
         descriptionLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13.0];
         descriptionLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
         descriptionLabel.numberOfLines = 2;
         descriptionLabel.text = self.firstArticle.descriptionNoHTML;
+        descriptionLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
         [headerView addSubview: descriptionLabel];
+        
         //add title label
         CGRect titleFrame = CGRectMake(10,
                                        headerView.frame.size.height
-                                       - descriptionLabel.frame.size.height
-                                       - 30,
+                                           - previousLabel.frame.size.height
+                                           - descriptionLabel.frame.size.height
+                                           - 40,
                                        headerView.frame.size.width - 10,
-                                       30);
+                                       40);
         UILabel *titleLabel = [[UILabel alloc] initWithFrame: titleFrame];
         titleLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
         titleLabel.textColor = [UIColor colorWithWhite:0.4 alpha:1.0];
         titleLabel.numberOfLines = 1;
         titleLabel.text = self.firstArticle.title;
+        titleLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
         [headerView addSubview: titleLabel];
+        
         //add image view
         CGRect imageFrame = CGRectMake(0,
                                        0,
                                        headerView.frame.size.width,
                                        headerView.frame.size.height
-                                       - descriptionLabel.frame.size.height
-                                       - titleLabel.frame.size.height
-                                       - verticalMargin);
+                                           - previousLabel.frame.size.height
+                                           - descriptionLabel.frame.size.height
+                                           - titleLabel.frame.size.height
+                                           - verticalMargin);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = TRUE;
         imageView.layer.borderWidth = 1.0;
         imageView.layer.borderColor = [[UIColor colorWithWhite:0.9 alpha:1.0] CGColor];
+        imageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                      | UIViewAutoresizingFlexibleHeight);
         [imageView downloadAndSetImage:self.firstArticle.imageUrl];
         [headerView addSubview:imageView];
-    
-        headerView.layer.borderWidth = 1.0;
-        headerView.layer.borderColor = [[UIColor colorWithWhite:0.9 alpha:1.0] CGColor];
         
+        //add UITap
+        UIView *tapView = [[UIView alloc] initWithFrame:headerView.frame];
+        tapView.backgroundColor = [UIColor clearColor];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
+                                              initWithTarget:self
+                                              action:@selector(viewFirstArticle)];
+        [tapView addGestureRecognizer:tapGesture];
+        [headerView addSubview:tapView];
+
         return headerView;
     }
     return nil;
@@ -193,6 +268,9 @@
              forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                     withReuseIdentifier:[ViewController headerReuseId]];
     [self->collectionView setBackgroundColor:[UIColor whiteColor]];
+    
+    self->collectionView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                             | UIViewAutoresizingFlexibleHeight);
     
     [self.view addSubview:self->collectionView];
 }

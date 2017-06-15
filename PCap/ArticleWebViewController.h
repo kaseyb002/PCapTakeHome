@@ -10,8 +10,16 @@
 #import <WebKit/WebKit.h>
 #import "Article.h"
 
+/*!
+ @class ArticleWebViewController
+ 
+ @brief Simple WebView of article from blog.
+ 
+ */
+
 @interface ArticleWebViewController : UIViewController <WKNavigationDelegate>
 
+/*! @brief Article to display. */
 @property(nonatomic, strong)Article *article;
 
 @end

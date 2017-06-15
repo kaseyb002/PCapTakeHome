@@ -78,16 +78,10 @@
 			children = (
 				03921C9B1EF1E80D00DF1757 /* AppDelegate.h */,
 				03921C9C1EF1E80D00DF1757 /* AppDelegate.m */,
-				03921C9E1EF1E80D00DF1757 /* ViewController.h */,
-				03921C9F1EF1E80D00DF1757 /* ViewController.m */,
-				03921CCC1EF326C400DF1757 /* ArticleWebViewController.h */,
-				03921CCD1EF326C400DF1757 /* ArticleWebViewController.m */,
-				03921CB81EF2EE0C00DF1757 /* ArticleCollectionViewCell.h */,
-				03921CB91EF2EE0C00DF1757 /* ArticleCollectionViewCell.m */,
-				03921CB41EF1EDB400DF1757 /* Article.h */,
-				03921CB21EF1ED0900DF1757 /* Article.m */,
-				03921CB51EF1EF4000DF1757 /* ArticleAPI.h */,
-				03921CB61EF1EF5000DF1757 /* ArticleAPI.m */,
+				03921CCF1EF3326300DF1757 /* View Controllers */,
+				03921CD21EF3328400DF1757 /* Cell Views */,
+				03921CD11EF3327B00DF1757 /* Model */,
+				03921CD01EF3327100DF1757 /* Network API */,
 				03921CC81EF3123100DF1757 /* Extensions */,
 				03921CA41EF1E80D00DF1757 /* Assets.xcassets */,
 				03921CA61EF1E80D00DF1757 /* LaunchScreen.storyboard */,
@@ -115,6 +109,44 @@
 				03921CCA1EF31E5A00DF1757 /* UIImageView+DownloadImage.m */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		03921CCF1EF3326300DF1757 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				03921C9E1EF1E80D00DF1757 /* ViewController.h */,
+				03921C9F1EF1E80D00DF1757 /* ViewController.m */,
+				03921CCC1EF326C400DF1757 /* ArticleWebViewController.h */,
+				03921CCD1EF326C400DF1757 /* ArticleWebViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		03921CD01EF3327100DF1757 /* Network API */ = {
+			isa = PBXGroup;
+			children = (
+				03921CB51EF1EF4000DF1757 /* ArticleAPI.h */,
+				03921CB61EF1EF5000DF1757 /* ArticleAPI.m */,
+			);
+			name = "Network API";
+			sourceTree = "<group>";
+		};
+		03921CD11EF3327B00DF1757 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				03921CB41EF1EDB400DF1757 /* Article.h */,
+				03921CB21EF1ED0900DF1757 /* Article.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		03921CD21EF3328400DF1757 /* Cell Views */ = {
+			isa = PBXGroup;
+			children = (
+				03921CB81EF2EE0C00DF1757 /* ArticleCollectionViewCell.h */,
+				03921CB91EF2EE0C00DF1757 /* ArticleCollectionViewCell.m */,
+			);
+			name = "Cell Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

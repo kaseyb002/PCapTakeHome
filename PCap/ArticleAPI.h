@@ -9,9 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "Article.h"
 
+/*!
+ @class ArticleAPI
+ 
+ @brief Contains network calls to get articles from Personal Capital Blog.
+ 
+ */
+
 @interface ArticleAPI : NSObject <NSXMLParserDelegate>
 
-- (void) getFeed: (void (^)(NSArray<Article *> *articles, NSError *error))callback;
+/*!
+ @brief Retrieves most recent 40 articles from Personal Capital blog.
+ 
+ @param  callback A block that provides an array of articles or a network error message.
+
+ */
+- (void) getFeed: (void (^)(NSArray<Article *> *articles, NSString *error))callback;
 
 #pragma mark - Dictionary Keys for XML parsing
 @property (nonatomic, strong) NSMutableDictionary *dictData;

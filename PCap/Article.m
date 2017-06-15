@@ -13,6 +13,13 @@
 
 @implementation Article
 
+/*!
+ @brief Convenience init for creating object from XML data.
+  
+ @param  xmlData Dictionary containing article data XML.
+ 
+ @return Article An Article object.
+ */
 - (id) initWith: (NSDictionary *)xmlData {
     
     self = [super init];

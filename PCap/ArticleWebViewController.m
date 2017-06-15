@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.topItem.title = @"";
-    self.title = @"Resources";
+    self.title = self.article.title;
     NSString *mobileLink = [NSString stringWithFormat:@"%@%@",
                             self.article.link,
                             @"?displayMobileNavigation=0"];
@@ -41,6 +41,8 @@
                                             configuration:webConfig];
 
     webView.navigationDelegate = self;
+    webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                | UIViewAutoresizingFlexibleHeight);
     self.webView = webView;
     
     [self.view addSubview:webView];

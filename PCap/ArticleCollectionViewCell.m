@@ -42,7 +42,8 @@
                                        - titleLabel.frame.size.height
                                        - 5);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-        imageView.contentMode = UIViewContentModeScaleToFill;//TODO: fix this
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = TRUE;
         imageView.layer.borderWidth = 1.0;
         imageView.layer.borderColor = [[UIColor colorWithWhite:0.9 alpha:1.0] CGColor];
         self.imageView = imageView;

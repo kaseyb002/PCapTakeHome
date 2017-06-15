@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (StringCleanUp)
+/*!@brief Removes white space, \t, and \n.*/
 - (NSString *)removeTabsAndNewLines;
+/*!@brief Removes any HTML markup in the form of < >.*/
 - (NSString *)stripHTML;
 @end

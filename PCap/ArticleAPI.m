@@ -13,7 +13,7 @@
 @implementation ArticleAPI
 
 #pragma mark - Networks Calls
-- (void) getFeed: (void (^)(NSArray<Article *> *articles, NSError *error))callback {
+- (void) getFeed: (void (^)(NSArray<Article *> *articles, NSString *error))callback {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         
@@ -27,7 +27,7 @@
             [xmlparser parse];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                callback(NULL, NULL);//TODO: insert error
+                callback(NULL, @"RSS download failed");
             });
             return;
         }
